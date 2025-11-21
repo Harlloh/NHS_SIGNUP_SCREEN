@@ -110,7 +110,7 @@ body {
 }
 
 .text_join_convo {
-    font-size: var(--spacing-md);
+    font-size: var(--spacing-sm);
     margin: var(--spacing-md) 0;
 }
 
@@ -124,7 +124,7 @@ body {
     border-radius: var(--spacing-xs);
     margin: var(--spacing-lg) auto;
     padding: var(--spacing-md);
-    font-size: var(--spacing-md);
+    font-size: var(--spacing-sm);
 
 }
 
