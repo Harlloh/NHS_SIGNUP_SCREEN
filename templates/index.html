@@ -5,20 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>National conversation on the future of NHS</title>
-    <link rel="stylesheet" href="../static/css/style.css">
+    <!-- <link rel="stylesheet" href="../static/css/style.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
 </head>
 
 <body>
-    <!-- <header>
-        <div class="logo_div">
-           
-        </div>
-    </header> -->
     <header class="header">
         <div class="header-content">
             <div class="header-logos">
-                <img src="../static/assets/logo_sortition-foundation_alt.svg" class="logo"
-                    alt="logo_sortition-foundation_alt">
+                <!-- <img src="../static/assets/logo_sortition-foundation_alt.svg" class="logo"
+                    alt="logo_sortition-foundation_alt"> -->
+                <img src="{{ url_for('static', filename='assets/logo_sortition-foundation_alt.svg') }}">
+
                 <span style="color: var(--text-medium);">+</span>
                 <img src="../static/assets/DHSC_3268_AW-removebg-preview.png" class="logo"
                     alt="logo_sortition-foundation_alt">
@@ -66,7 +65,7 @@
                 email questions to <a href="mailto:nhs@sortitionfoundation.org">nhs@sortitionfoundation.org</a></p>
         </div>
 
-        <details class="container accordion_div">
+        <details open class="container accordion_div">
             <summary class="accordion_label">Important Notes About Registration</summary>
             <ol class="detail_body">
                 <li>Every person who registers online must have their own individual email address. If you do not have
@@ -95,7 +94,7 @@
             </ol>
         </details>
 
-        <form action="" class="form_div container">
+        <form action="/submit" method="POST" class="form_div container">
             <div class=" eligibility">
                 <span>
                     <h1 class="eligibility_header">Check your eligibility</h1>
@@ -108,7 +107,7 @@
                         <span>I can attend on Saturday 30 November in Ipswich</span>
                     </label>
                     <label class="checkbox_div">
-                        <input type="checkbox" id="attendance" required>
+                        <input type="checkbox" id="eligible" required>
                         <span>I'm <b>16+ years old</b>, live in the UK, and have a UK mailing address</span>
                     </label>
                 </div>
@@ -200,31 +199,99 @@
                     represents the entire community.</p>
 
                 <div class="about_form_wrapper">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="gender">
-                                Gender <span class="required">*</span>
-                            </label>
-                            <select id="gender" name="gender" required>
-                                <option value="">Please select...</option>
-                                <option value="female">Female</option>
-                                <option value="male">Male</option>
-                                <option value="non-binary">Non-binary</option>
-                                <option value="other">Other</option>
-                                <option value="prefer-not">Prefer not to say</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="dob">Date of Birth <span class="required">*</span></label>
-                            <input type="date" name="dob" id="dob">
-                        </div>
-                    </div>
-
                     <div class="form-group">
                         <label for="gender">
-                            Ethnic group <span class="required">*</span>
+                            Gender <span class="required">*</span>
                         </label>
                         <select id="gender" name="gender" required>
+                            <option value="">Please select...</option>
+                            <option value="female">Female</option>
+                            <option value="male">Male</option>
+                            <option value="non-binary">Non-binary</option>
+                            <option value="other">Other</option>
+                            <option value="prefer-not">Prefer not to say</option>
+                        </select>
+                    </div>
+
+                    <p style="margin-bottom: 1rem; font-weight: 600; color: #212b32;">What is your Date of Birth?</p>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="day">
+                                Day <span class="required">*</span>
+                            </label>
+                            <select id="day" name="dob_day" required aria-required="true">
+                                <option value="">Select day</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="month">
+                                Month <span class="required">*</span>
+                            </label>
+                            <select id="month" name="dob_month" required aria-required="true">
+                                <option value="">Select month</option>
+                                <option value="01">January</option>
+                                <option value="02">February</option>
+                                <option value="03">March</option>
+                                <option value="04">April</option>
+                                <option value="05">May</option>
+                                <option value="06">June</option>
+                                <option value="07">July</option>
+                                <option value="08">August</option>
+                                <option value="09">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="year">
+                                Year <span class="required">*</span>
+                            </label>
+                            <input type="text" name="year" id="year" placeholder="YYYY" pattern="[0-9]{4}" minlength="4"
+                                maxlength="4" required>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="ethnicity">
+                            Ethnic group <span class="required">*</span>
+                        </label>
+                        <select id="ethnicity" name="ethnicity" required>
                             <option value="">Please select...</option>
                             <option value="white">White</option>
                             <option value="mixed">Mixed or multiple ethnic groups</option>
@@ -251,10 +318,10 @@
 
 
                     <div class="form-group">
-                        <label for="health-conditions">All in all, how satisfied or dissatisfied would you say you are
-                            with the way in which the National Health Service runs
+                        <label for="nhs-satisfaction">How satisfied or dissatisfied would you say you are
+                            with the way the National Health Service runs
                             nowadays?<span class="required">*</span></label>
-                        <select id="health-conditions" name="health_conditions" required>
+                        <select id="nhs-satisfaction" name="nhs_satisfaction" required>
                             <option value="">Please select...</option>
                             <option value="yes-limited-little">Very satisfied</option>
                             <option value="yes-limited-lot">Quite satisfied</option>
@@ -289,7 +356,7 @@
                         <summary style="cursor: pointer; color: #c67d00; font-weight: 600;">
                             Educational definitions:
                         </summary>
-                        <div style="margin-top: .1rem; padding: 1rem;">
+                        <div style="margin-top: .1rem; padding: .5rem 1rem;" class="edu_dropdown">
                             <ul style="margin-left: 1.5rem; line-height: 1.8;">
                                 <li><strong>No qualifications:</strong> You have none of the qualifications listed below
                                     (or not yet if more
@@ -341,7 +408,86 @@
     </main>
 
 
+    <footer class="site-footer">
 
+        <img class="big_footer_logo" src="{{ url_for('static', filename='assets/logo_sortition-foundation_alt.svg') }}"
+            alt="">
+        <div class="footer_container">
+            <div class="grid">
+                <div style="text-align: center;">
+                    <h5>United Kingdom</h5>
+                    <p>Ground Floor, 3 Wellbrook Court</p>
+                    <p>
+                        Girton, Cambridge CB3 0NA</p>
+                    <span style="display: flex; flex-direction: column;">
+                        <a href="tel:+44(0)1394825995" style="color: black;">+44 (0) 1394 825 995</a>
+                        <a style="color: black;" href="mailto:press@sortitionfoundation.org">Press enquiries email</a>
+                    </span>
+                </div>
+                <div style="text-align: center;">
+                    <h5>Australia</h5>
+                    <p>PO Box 332</p>
+                    <p>Brunswick
+                        VIC 3056</p>
+                    <a href="tel:+611800979787" style="color: black;">+61 1800 979 787</a>
+                </div>
+                <div style="text-align: center;">
+                    <h5>United States of America</h5>
+                    <p>5100 SW Macadam Ave Suite 360</p>
+                    <p>
+                        Portland OR 97239</p>
+                    <a href="tel:+18662170581" style="color: black;">+ 1 (866) 217 0581</a>
+                </div>
+                <div class="europe_div">
+                    <img src="{{ url_for('static', filename='assets/logo-sortition-europe.svg') }}" alt="">
+                    <span style="text-align: center;">
+                        <h5>Hungary</h5>
+                        <p>Ráday Utca 31C</p>
+                        <p>
+                            1092 Budapest</p>
+                        <a style="color: black;" href="tel:+36202948309">+36 20 294 8309</a>
+                    </span>
+                </div>
+            </div>
+            <div class="last_div">
+                <div class="link_wrapper">
+                    <span>
+                        <a style="color: black;" href="https://www.sortitionfoundation.org/terms_and_conditions">Terms
+                            and
+                            Conditions</a> | <a style="color: black;"
+                            href="https://www.sortitionfoundation.org/privacy_policy">Privacy Policy</a>
+                    </span>
+                    <span>
+                        <a style="color: black;" href="https://nationbuilder.com/">Made with
+                            NationBuilder</a> | <a style="color: black;" href="https://www.tectonica.co/">Built by
+                            Tectonica</a>
+                    </span>
+                </div>
+                <div>
+                    <div class="foot_wrapper">
+                        <a href="https://creativecommons.org/licenses/by/4.0/">
+                            <img class="foot_img1" src="{{ url_for('static', filename='assets/ico_cc.png') }}" alt="">
+                        </a>
+                        <span>
+
+                            <a href="https://www.facebook.com/SortitionFoundation/">
+                                <img class="foot_img"
+                                    src="{{ url_for('static', filename='assets/ico_facebook_sf.png') }}" alt="">
+                            </a>
+                            <a href="https://twitter.com/SortitionNow">
+                                <img class="foot_img" src="{{ url_for('static', filename='assets/ico_x_sf.png') }}"
+                                    alt="">
+                            </a>
+                            <a href="https://www.sortitionfoundation.org/contact">
+                                <img class="foot_img" src="{{ url_for('static', filename='assets/ico_mail_sf.png') }}"
+                                    alt="">
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You for Your Registration - NHS Conversation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <!-- Header with Logo -->
+    <header class="success-header">
+        <div class="header-container">
+            <div class="logo-placeholder">
+                <img src="{{ url_for('static', filename='assets/logosortition.svg') }}" alt="Sortition Foundation"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <div class="breadcrumb-container">
+            <a href="/">HOME</a>
+            <span class="breadcrumb-separator">|</span>
+            <span>THANK YOU FOR YOUR REGISTRATION</span>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+        <h1 class="hero-title">Thank you, {{ name }}, for your registration</h1>
+    </section>
+</body>
+
+</html>
